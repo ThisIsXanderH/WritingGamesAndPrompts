@@ -9,164 +9,223 @@
 </head>
 
 <body>
-<div id="header">
-	<!-- Page header, always visible -->
-    <h1>Writing Games and Prompts</h1>
-</div>
-
-<div id="hubMain">
-	<!-- Initial view, leads to the hub divs -->
-    <button class="btnNav" data-destination="hubGames">Games</button><br>
-    <button class="btnNav" data-destination="hubPrompts">Prompts</button>
-</div>
-
-<!-- Games -->
-<div id="hubGames" class="hidden">
-	<!-- Game Hub, leads to the game divs -->
-    <h2>Games</h2>
-    <button class="btnNav" data-destination="hubMain">Back</button><br>
-	<button id="btnGameWikipediaStart" class="btnNav" data-destination="gameWikipedia">Wikipedia</button>
-</div>
-
-<div id="gameWikipedia" class="hidden">
-	<!-- Wikipedia Game -->
-    <!-- TODO: I guess a setup would be nice here. Number of categories, titles. -->
-    <button class="btnNav" data-destination="hubGames">Back</button><br>
-    <div id="gameWikipediaContent"></div>
-	<button id="btnGameWikipediaRefresh">Refresh</button>
-</div>
-
-<div id="gameGenres" class="hidden">
-	<!-- Genres Game -->
-    <button class="btnNav" data-destination="hubGames">Back</button><br>
-    <div id="gameGenresSetup" class="hidden">
-    	<!-- TODO: This will be for assigning the number of genres, as well as the interval/total time for the game.
-        Default is 5 genres over 25 minutes  
-    	<select id="gameGenresSetupGenreCount">
-        	<option value="">
-        </select>-->
+    <div id="header">
+        <!-- Page header, always visible -->
+        <h1>Writing Games and Prompts</h1>
     </div>
-    <div id="gameGenresContent">
-    	
+    
+    <div id="hubMain">
+        <!-- Initial view, leads to the hub divs -->
+        <button class="btnNav" data-destination="hubGames">Games</button><br>
+        <button class="btnNav" data-destination="hubPrompts">Prompts</button>
     </div>
-</div>
+    
+    <!-- Games -->
+        <div id="hubGames" class="hidden">
+            <!-- Game Hub, leads to the game divs -->
+            <h2>Games</h2>
+            <button class="btnNav" data-destination="hubMain">Back</button><br>
+            <button id="btnGameWikipediaStart" class="btnNav" data-destination="gameWikipedia">Wikipedia</button>
+        </div>
+        
+        <div id="gameWikipedia" class="hidden">
+            <!-- Wikipedia Game -->
+            <!-- TODO: I guess a setup would be nice here. Number of categories, titles. -->
+            <button class="btnNav" data-destination="hubGames">Back</button><br>
+            <div id="gameWikipediaContent"></div>
+            <button id="btnGameWikipediaRefresh">Refresh</button>
+        </div>
+        
+        <div id="gameGenres" class="hidden">
+            <!-- Genres Game -->
+            <button class="btnNav" data-destination="hubGames">Back</button><br>
+            <div id="gameGenresSetup" class="hidden">
+                <!-- TODO: This will be for assigning the number of genres, as well as the interval/total time for the game.
+                Default is 5 genres over 25 minutes  
+                <select id="gameGenresSetupGenreCount">
+                    <option value="">
+                </select>-->
+            </div>
+            <div id="gameGenresContent">
+                <!-- NOTE: Not really sure how to structure this. A series of timers, visible one at a time? See all (past) genres at once? Fade them? -->
+            </div>
+        </div>
 
-<!-- Prompts -->
-<div id="hubPrompts" class="hidden">
-	<!-- Prompt Hub, leads to the prompt divs -->
-    <h2>Prompts</h2>
-    <button class="btnNav" data-destination="hubMain">Back</button><br>
-
-	<button id="btnPromptStoryStart" class="btnNav" data-destination="promptStory">Story (/r/WritingPrompts)</button><br>
-	<button id="btnPromptSimpleStart" class="btnNav" data-destination="promptSimple">Simple (/r/SimplePrompts)</button>
-</div>
-
-<div id="promptStory" class="hidden">
-	<!-- Story Prompt (/r/WritingPrompts)-->
-    <button class="btnNav" data-destination="hubPrompts">Back</button><br>
-    <div id="promptStoryContent"></div>
-    <button id="btnPromptStoryRefresh">Refresh</button>
-</div>
-
-<div id="promptSimple" class="hidden">
-	<!-- Simple Prompt (/r/SimplePrompts)-->
-    <button class="btnNav" data-destination="hubPrompts">Back</button><br>
-    <div id="promptSimpleContent"></div>
-    <button id="btnPromptSimpleRefresh">Refresh</button>
-</div>
+    <!-- Prompts -->
+        <div id="hubPrompts" class="hidden">
+            <!-- Prompt Hub, leads to the prompt divs -->
+            <h2>Prompts</h2>
+            <button class="btnNav" data-destination="hubMain">Back</button><br>
+        
+            <button id="btnPromptStoryStart" class="btnNav" data-destination="promptStory">Story (/r/WritingPrompts)</button><br>
+            <button id="btnPromptSimpleStart" class="btnNav" data-destination="promptSimple">Simple (/r/SimplePrompts)</button><br>
+            <button id="btnPromptEU" class="btnNav" data-destination="promptEU">Extended Universe (/r/WritingPrompts EU)</button>
+        </div>
+        
+        <div id="promptStory" class="hidden">
+            <!-- Story Prompt (/r/WritingPrompts)-->
+            <button class="btnNav" data-destination="hubPrompts">Back</button><br>
+            <div id="promptStoryContent"></div>
+            <button id="btnPromptStoryRefresh">Refresh</button>
+        </div>
+        
+        <div id="promptSimple" class="hidden">
+            <!-- Simple Prompt (/r/SimplePrompts)-->
+            <button class="btnNav" data-destination="hubPrompts">Back</button><br>
+            <div id="promptSimpleContent"></div>
+            <button id="btnPromptSimpleRefresh">Refresh</button>
+        </div>
+        
+        <div id="promptEU" class="hidden">
+            <!-- EU Prompt (/r/WritingPrompts EU)-->
+            <button class="btnNav" data-destination="hubPrompts">Back</button><br>
+            <div id="promptEUContent"></div>
+            <button id="btnPromptEURefresh">Refresh</button>
+        </div>
+        
+        <div id="promptCW" class="hidden">
+            <!-- CW Prompt (/r/WritingPrompts CW)-->
+            <button class="btnNav" data-destination="hubPrompts">Back</button><br>
+            <div id="promptCWContent"></div>
+            <button id="btnPromptCWRefresh">Refresh</button>
+        </div>
 
 </body>
 <script>
 	/*Initialise*/
-	var currentDiv = "hubMain"; //Starting Div
-	
-	$('.hidden').hide(); 
+		var currentDiv = "hubMain"; //Starting Div
+		
+		$('.hidden').hide(); 
 	
 	/*Functions*/
-	function showDiv(newDiv) {
-		/* 
-		showDiv(newDiv) 
-		Hides currentDiv, shows newDiv, sets currentDiv to newDiv
-		*/
-		$('#'.concat(currentDiv)).hide();
-		$('#'.concat(newDiv)).show();
-		currentDiv = newDiv;
-	}
+		function showDiv(newDiv) {
+			/* 
+			showDiv(newDiv) 
+			Hides currentDiv, shows newDiv, sets currentDiv to newDiv
+			*/
+			$('#'.concat(currentDiv)).hide();
+			$('#'.concat(newDiv)).show();
+			currentDiv = newDiv;
+		}
 	
 	
 	/* Menu Navigation*/
-	$('.btnNav').click(function() {
-		/* Any button with the class btnNav will also have a data-destination attribute */
-		showDiv($(this).data('destination'));
-	});
+		$('.btnNav').click(function() {
+			/* Any button with the class btnNav will also have a data-destination attribute */
+			showDiv($(this).data('destination'));
+		});
 	
 	
 	
 	/*Wikipedia Game*/
-	var wikipediaPrompt,
-	wikipediaCategory = ['Protagonist','Goal','Setting','Obstacle'],
-	wikipediaURL = "https://en.wikipedia.org/w/api.php?action=query&list=random&rnnamespace=0&rnlimit=4&format=json&callback=?";
-	
-	function getWikipediaContent() {
+		var wikipediaPrompt,
+		wikipediaCategory = ['Protagonist','Goal','Setting','Obstacle'],
+		wikipediaURL = "https://en.wikipedia.org/w/api.php?action=query&list=random&rnnamespace=0&rnlimit=4&format=json&callback=?";
 		
-		$('#gameWikipediaContent').html('Loading...');
-		$('#btnGameWikipediaRefresh').attr('disabled', true);
+		function getWikipediaContent() {
+			
+			$('#gameWikipediaContent').html('Loading...');
+			$('#btnGameWikipediaRefresh').attr('disabled', true);
+			
+			$.getJSON(wikipediaURL, function(result) {
+				
+				$('#gameWikipediaContent').html('');
+				$('#btnGameWikipediaRefresh').removeAttr('disabled');
+				
+				console.log(result);
+				/* alert(result.query.random.length); 
+				Neither here nor there but... you can get the length, just like arrays.
+				Use for getting random from search result? Not really sure is /random will work there*/
+				for(i=0;i<4;i++) {
+					var queryID = result.query.random[i].id,
+					queryTitle = result.query.random[i].title;
+					$('#gameWikipediaContent').append(wikipediaCategory[i].concat(": <a href='https://en.wikipedia.org/?curid=",queryID,"'>",queryTitle,"</a><br>"));
+				}
+			});
+		}
 		
-		$.getJSON(wikipediaURL, function(result) {
-			
-			$('#gameWikipediaContent').html('');
-			$('#btnGameWikipediaRefresh').removeAttr('disabled');
-			
-			console.log(result);
-			
-			for(i=0;i<4;i++) {
-				$('#gameWikipediaContent').append(wikipediaCategory[i].concat(": <a href='https://en.wikipedia.org/?curid=",result.query.random[i].id,"'>",result.query.random[i].title,"</a><br>"));
-			}
+		$("#btnGameWikipediaStart").click(function() {
+			getWikipediaContent()
 		});
-	}
-	
-	$("#btnGameWikipediaStart").click(function() {
-		getWikipediaContent()
-	});
-	$("#btnGameWikipediaRefresh").click(function() {
-		getWikipediaContent()
-	});
+		$("#btnGameWikipediaRefresh").click(function() {
+			getWikipediaContent()
+		});
 	
 	/*Reddit Writing Prompts*/
+		function getRedditPost(url,targetDiv,refreshButton) {
+			var div = "#".concat(targetDiv),
+			ref = "#".concat(refreshButton);
+			$(div).text('Loading...');
+			$(ref).attr('disabled', true);
+			
+			$.getJSON(url, function(result) {
+				//NOTE: This currently has the reddit unlogged account refresh limit. Implement oAuth2 to fix.
+				console.log(result);
+				resultPrompt = result[0].data.children[0].data.title;
+				$(div).text(resultPrompt);
+				$(ref).removeAttr('disabled');
+			});
+		}
+	
 	/* /r/WritingPrompts */
-	var writingPrompt,
-	writingPromptsURL = "http:/api.reddit.com/r/writingprompts/random.json";
-	
-	function getStoryPrompt() {
-		//TODO: I could condense this and SimplePrompts down to one function with an argument
-		$('#promptStoryContent').text('Loading...');
-		$.getJSON(writingPromptsURL, function(result) {
-			//NOTE: This currently has the reddit unlogged account refresh limit. Implement oAuth2 to fix.
-			console.log(result);
-			writingPrompt = result[0].data.children[0].data.title;
-			$('#promptStoryContent').text(writingPrompt);
+		var writingPrompt,
+		writingPromptsURL = "http:/api.reddit.com/r/writingprompts/random.json";
+			
+		$('#btnPromptStoryStart').click(function() {
+			//getStoryPrompt();
+			getRedditPost(writingPromptsURL, "promptStoryContent","btnPromptStoryRefresh");
 		});
-	}
-	
-	
-	$('#btnPromptStoryStart').click(function() {
-		getStoryPrompt();
-	});
-	$('#btnPromptStoryRefresh').click(function() {
-		getStoryPrompt();
-	});
+		$('#btnPromptStoryRefresh').click(function() {
+			//getStoryPrompt();
+			getRedditPost(writingPromptsURL, "promptStoryContent","btnPromptStoryRefresh");
+		});
 	
 	/* /r/SimplePrompts */
-	var simplePrompt,
-	simplePromptsURL = "http:/api.reddit.com/r/simpleprompts/random.json";
-	$.getJSON(simplePromptsURL, function(result) {
-		//NOTE: This currently has the reddit unlogged account refresh limit. Implement oAuth2 to fix.
-		console.log(result);
-		simplePrompt = result[0].data.children[0].data.title;
-	});
+		var simplePrompt,
+		simplePromptsURL = "http:/api.reddit.com/r/simpleprompts/random.json";
+		
+		$('#btnPromptSimpleStart').click(function() {
+			//getStoryPrompt();
+			getRedditPost(simplePromptsURL, "promptSimpleContent","btnPromptSimpleRefresh");
+		});
+		$('#btnPromptSimpleRefresh').click(function() {
+			//getStoryPrompt();
+			getRedditPost(simplePromptsURL, "promptSimpleContent","btnPromptSimpleRefresh");
+		});
 	
+	/* /r/WritingPrompts EU */
+		/*NOTE: The URL for these search ones gets weird.
+		Regular URL: 	https://www.reddit.com/r/WritingPrompts/search?q=flair%3A%28Writing+Prompt%29&sort=relevance&restrict_sr=on&t=all
+		JSON URL:		https://www.reddit.com/r/WritingPrompts/search.json?q=flair%3A%28Writing+Prompt%29&sort=relevance&restrict_sr=on&t=all
+		Make sure you figure out the best search, generally. 
+		Put api. instead of www. I guess?*/
+		var EUPrompt,
+		EUPromptsURL = "http:/api.reddit.com/r/writingprompts/random.json";
+		
+		$('#btnPromptEUStart').click(function() {
+			//getStoryPrompt();
+			getRedditPost(EUPromptsURL, "promptEUContent","btnPromptEURefresh");
+		});
+		$('#btnPromptEURefresh').click(function() {
+			//getStoryPrompt();
+			getRedditPost(EUPromptsURL, "promptEUContent","btnPromptEURefresh");
+		});
 	
+	/* /r/WritingPrompts CW */
+		var CWPrompt,
+		CWPromptsURL = "http:/api.reddit.com/r/writingprompts/random.json";
+		
+		$('#btnPromptCWStart').click(function() {
+			//getStoryPrompt();
+			getRedditPost(CWPromptsURL, "promptCWContent","btnPromptCWRefresh");
+		});
+		$('#btnPromptCWRefresh').click(function() {
+			//getStoryPrompt();
+			getRedditPost(CWPromptsURL, "promptCWContent","btnPromptCWRefresh");
+		});
+		
+		
 	/* Genre Game */
-	var	genreList = ['Action','Drama','Science Fiction (Sci-Fi)'];
+		var	genreList = ['Action','Drama','Science Fiction (Sci-Fi)'];
 </script>
 </html>
