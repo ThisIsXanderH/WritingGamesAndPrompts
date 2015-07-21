@@ -1,0 +1,42 @@
+<!doctype html>
+<html>
+<head>
+<script src="includes/jquery-1.11.3.min.js"></script>
+
+<meta charset="utf-8">
+<title>Wikipedia Game</title>
+</head>
+
+<body>
+<div id="Wikipedia">
+	
+</div>
+</body>
+<script>
+	var wikipediaPrompt, writingPrompt, simplePrompt;
+	wikipediaCategory = ['Protagonist','Goal','Setting','Obstacle'];
+	wikipediaURL = "https://en.wikipedia.org/w/api.php?action=query&list=random&rnnamespace=0&rnlimit=4&format=json&callback=?";
+	$.getJSON(wikipediaURL, function(result) {
+		console.log(result);
+		for(i=0;i<4;i++) {
+			$('#Wikipedia').append(wikipediaCategory[i].concat(": <a href='https://en.wikipedia.org/?curid=",result.query.random[i].id,"'>",result.query.random[i].title,"</a><br>"));
+		}
+		wikipediaPrompt = result.query.random[0].title;
+	});
+	
+	writingPromptsURL = "http:/api.reddit.com/r/writingprompts/random.json";
+	$.getJSON(writingPromptsURL, function(result) {
+		//NOTE: This currently has the reddit unlogged account refresh limit. Implement oAuth2 to fix.
+		console.log(result);
+		writingPrompt = result[0].data.children[0].data.title;
+	});
+	simplePromptsURL = "http:/api.reddit.com/r/simpleprompts/random.json";
+	$.getJSON(simplePromptsURL, function(result) {
+		//NOTE: This currently has the reddit unlogged account refresh limit. Implement oAuth2 to fix.
+		console.log(result);
+		simplePrompt = result[0].data.children[0].data.title;
+	});
+	
+	genreList = ['Action','Drama','Science Fiction (Sci-Fi)'];
+</script>
+</html>
