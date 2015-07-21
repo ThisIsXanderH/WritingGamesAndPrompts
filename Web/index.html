@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
 <head>
+<link rel="stylesheet" type="text/css" href="includes/style.css">
 <script src="includes/jquery-1.11.3.min.js"></script>
 
 <meta charset="utf-8">
@@ -8,28 +9,155 @@
 </head>
 
 <body>
-<div id="Wikipedia">
-	
+<div id="header">
+	<!-- Page header, always visible -->
+    <h1>Writing Games and Prompts</h1>
 </div>
+
+<div id="hubMain">
+	<!-- Initial view, leads to the hub divs -->
+    <button class="btnNav" data-destination="hubGames">Games</button><br>
+    <button class="btnNav" data-destination="hubPrompts">Prompts</button>
+</div>
+
+<!-- Games -->
+<div id="hubGames" class="hidden">
+	<!-- Game Hub, leads to the game divs -->
+    <h2>Games</h2>
+    <button class="btnNav" data-destination="hubMain">Back</button><br>
+	<button id="btnGameWikipediaStart" class="btnNav" data-destination="gameWikipedia">Wikipedia</button>
+</div>
+
+<div id="gameWikipedia" class="hidden">
+	<!-- Wikipedia Game -->
+    <!-- TODO: I guess a setup would be nice here. Number of categories, titles. -->
+    <button class="btnNav" data-destination="hubGames">Back</button><br>
+    <div id="gameWikipediaContent"></div>
+	<button id="btnGameWikipediaRefresh">Refresh</button>
+</div>
+
+<div id="gameGenres" class="hidden">
+	<!-- Genres Game -->
+    <button class="btnNav" data-destination="hubGames">Back</button><br>
+    <div id="gameGenresSetup" class="hidden">
+    	<!-- TODO: This will be for assigning the number of genres, as well as the interval/total time for the game.
+        Default is 5 genres over 25 minutes  
+    	<select id="gameGenresSetupGenreCount">
+        	<option value="">
+        </select>-->
+    </div>
+    <div id="gameGenresContent">
+    	
+    </div>
+</div>
+
+<!-- Prompts -->
+<div id="hubPrompts" class="hidden">
+	<!-- Prompt Hub, leads to the prompt divs -->
+    <h2>Prompts</h2>
+    <button class="btnNav" data-destination="hubMain">Back</button><br>
+
+	<button id="btnPromptStoryStart" class="btnNav" data-destination="promptStory">Story (/r/WritingPrompts)</button><br>
+	<button id="btnPromptSimpleStart" class="btnNav" data-destination="promptSimple">Simple (/r/SimplePrompts)</button>
+</div>
+
+<div id="promptStory" class="hidden">
+	<!-- Story Prompt (/r/WritingPrompts)-->
+    <button class="btnNav" data-destination="hubPrompts">Back</button><br>
+    <div id="promptStoryContent"></div>
+    <button id="btnPromptStoryRefresh">Refresh</button>
+</div>
+
+<div id="promptSimple" class="hidden">
+	<!-- Simple Prompt (/r/SimplePrompts)-->
+    <button class="btnNav" data-destination="hubPrompts">Back</button><br>
+    <div id="promptSimpleContent"></div>
+    <button id="btnPromptSimpleRefresh">Refresh</button>
+</div>
+
 </body>
 <script>
-	var wikipediaPrompt, writingPrompt, simplePrompt;
-	wikipediaCategory = ['Protagonist','Goal','Setting','Obstacle'];
-	wikipediaURL = "https://en.wikipedia.org/w/api.php?action=query&list=random&rnnamespace=0&rnlimit=4&format=json&callback=?";
-	$.getJSON(wikipediaURL, function(result) {
-		console.log(result);
-		for(i=0;i<4;i++) {
-			$('#Wikipedia').append(wikipediaCategory[i].concat(": <a href='https://en.wikipedia.org/?curid=",result.query.random[i].id,"'>",result.query.random[i].title,"</a><br>"));
-		}
-		wikipediaPrompt = result.query.random[0].title;
+	/*Initialise*/
+	var currentDiv = "hubMain"; //Starting Div
+	
+	$('.hidden').hide(); 
+	
+	/*Functions*/
+	function showDiv(newDiv) {
+		/* 
+		showDiv(newDiv) 
+		Hides currentDiv, shows newDiv, sets currentDiv to newDiv
+		*/
+		$('#'.concat(currentDiv)).hide();
+		$('#'.concat(newDiv)).show();
+		currentDiv = newDiv;
+	}
+	
+	
+	/* Menu Navigation*/
+	$('.btnNav').click(function() {
+		/* Any button with the class btnNav will also have a data-destination attribute */
+		showDiv($(this).data('destination'));
 	});
 	
-	writingPromptsURL = "http:/api.reddit.com/r/writingprompts/random.json";
-	$.getJSON(writingPromptsURL, function(result) {
-		//NOTE: This currently has the reddit unlogged account refresh limit. Implement oAuth2 to fix.
-		console.log(result);
-		writingPrompt = result[0].data.children[0].data.title;
+	
+	
+	/*Wikipedia Game*/
+	var wikipediaPrompt,
+	wikipediaCategory = ['Protagonist','Goal','Setting','Obstacle'],
+	wikipediaURL = "https://en.wikipedia.org/w/api.php?action=query&list=random&rnnamespace=0&rnlimit=4&format=json&callback=?";
+	
+	function getWikipediaContent() {
+		
+		$('#gameWikipediaContent').html('Loading...');
+		$('#btnGameWikipediaRefresh').attr('disabled', true);
+		
+		$.getJSON(wikipediaURL, function(result) {
+			
+			$('#gameWikipediaContent').html('');
+			$('#btnGameWikipediaRefresh').removeAttr('disabled');
+			
+			console.log(result);
+			
+			for(i=0;i<4;i++) {
+				$('#gameWikipediaContent').append(wikipediaCategory[i].concat(": <a href='https://en.wikipedia.org/?curid=",result.query.random[i].id,"'>",result.query.random[i].title,"</a><br>"));
+			}
+		});
+	}
+	
+	$("#btnGameWikipediaStart").click(function() {
+		getWikipediaContent()
 	});
+	$("#btnGameWikipediaRefresh").click(function() {
+		getWikipediaContent()
+	});
+	
+	/*Reddit Writing Prompts*/
+	/* /r/WritingPrompts */
+	var writingPrompt,
+	writingPromptsURL = "http:/api.reddit.com/r/writingprompts/random.json";
+	
+	function getStoryPrompt() {
+		//TODO: I could condense this and SimplePrompts down to one function with an argument
+		$('#promptStoryContent').text('Loading...');
+		$.getJSON(writingPromptsURL, function(result) {
+			//NOTE: This currently has the reddit unlogged account refresh limit. Implement oAuth2 to fix.
+			console.log(result);
+			writingPrompt = result[0].data.children[0].data.title;
+			$('#promptStoryContent').text(writingPrompt);
+		});
+	}
+	
+	
+	$('#btnPromptStoryStart').click(function() {
+		getStoryPrompt();
+	});
+	$('#btnPromptStoryRefresh').click(function() {
+		getStoryPrompt();
+	});
+	
+	/* /r/SimplePrompts */
+	var simplePrompt,
 	simplePromptsURL = "http:/api.reddit.com/r/simpleprompts/random.json";
 	$.getJSON(simplePromptsURL, function(result) {
 		//NOTE: This currently has the reddit unlogged account refresh limit. Implement oAuth2 to fix.
@@ -37,6 +165,8 @@
 		simplePrompt = result[0].data.children[0].data.title;
 	});
 	
-	genreList = ['Action','Drama','Science Fiction (Sci-Fi)'];
+	
+	/* Genre Game */
+	var	genreList = ['Action','Drama','Science Fiction (Sci-Fi)'];
 </script>
 </html>
