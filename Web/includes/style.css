@@ -1,8 +1,65 @@
 @charset "utf-8";
 /* CSS Document */
 
+body {
+	background:#E0EEEE;
+}
+
 /*.btnNav {*/
 button {
 	width:150px;
 	height:30px;
+}
+
+#header {
+	position:absolute;
+	top:0;
+	left:0;
+	right:0;
+	text-align:center;
+	height:150px;
+}
+
+#header img {
+	height:100%;
+}
+
+#footer {
+	position:fixed;
+	left:0;
+	right:0;
+	bottom:0;
+	text-align:right;
+	padding:2px;
+}
+
+#bodyContent {
+	position:absolute;
+	top:150px;
+	left:0;
+	right:0;
+}
+
+#gameWikipediaContent {
+	text-align:center;
+	font-size:24px;
+}
+
+#gameWikipediaContentLeft {
+	position:absolute;
+	right:50%;
+	text-align:right;
+}
+
+#gameWikipediaContentRight {
+	position:absolute;
+	left:50%;
+	text-align:left;
+}
+
+.gameGenresTimer, .gameGenresGenre {
+	position:relative;
+	width:100%;
+	text-align:center;
+	display:inline-block;
 }

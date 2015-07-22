@@ -11,87 +11,122 @@
 <body>
     <div id="header">
         <!-- Page header, always visible -->
-        <h1>Writing Games and Prompts</h1>
+        <!--<h1>Writing Games and Prompts</h1>-->
+        <img src="images/uqwc-header-banner.png"/>
     </div>
     
-    <div id="hubMain">
-        <!-- Initial view, leads to the hub divs -->
-        <button class="btnNav" data-destination="hubGames">Games</button><br>
-        <button class="btnNav" data-destination="hubPrompts">Prompts</button>
+    <div id="footer">
+    	&copy; 2015 &middot; Presented free and without ads thanks to <a href="https://www.patreon.com/TurtleEmpire">Patreon</a>
     </div>
     
-    <!-- Games -->
-        <div id="hubGames" class="hidden">
-            <!-- Game Hub, leads to the game divs -->
-            <h2>Games</h2>
-            <button class="btnNav" data-destination="hubMain">Back</button><br>
-            <button id="btnGameWikipediaStart" class="btnNav" data-destination="gameWikipedia">Wikipedia</button>
+    <div id="bodyContent">
+        <div id="hubMain">
+            <!-- Initial view, leads to the hub divs -->
+            <button class="btnNav" data-destination="hubGames">Games</button><br>
+            <button class="btnNav" data-destination="hubPrompts">Prompts</button>
         </div>
         
-        <div id="gameWikipedia" class="hidden">
-            <!-- Wikipedia Game -->
-            <!-- TODO: I guess a setup would be nice here. Number of categories, titles. -->
-            <button class="btnNav" data-destination="hubGames">Back</button><br>
-            <div id="gameWikipediaContent"></div>
-            <button id="btnGameWikipediaRefresh">Refresh</button>
-        </div>
-        
-        <div id="gameGenres" class="hidden">
-            <!-- Genres Game -->
-            <button class="btnNav" data-destination="hubGames">Back</button><br>
-            <div id="gameGenresSetup" class="hidden">
-                <!-- TODO: This will be for assigning the number of genres, as well as the interval/total time for the game.
-                Default is 5 genres over 25 minutes  
-                <select id="gameGenresSetupGenreCount">
-                    <option value="">
-                </select>-->
+        <!-- Games -->
+            <div id="hubGames" class="hidden">
+                <!-- Game Hub, leads to the game divs -->
+                <h2>Games</h2>
+                <button class="btnNav" data-destination="hubMain">Back</button><br>
+                <button id="btnGameWikipediaStart" class="btnNav" data-destination="gameWikipedia">Wikipedia</button><br>
+                <button id="btnGameGenresStart" class="btnNav" data-destination="gameGenres">Genres</button>
             </div>
-            <div id="gameGenresContent">
-                <!-- NOTE: Not really sure how to structure this. A series of timers, visible one at a time? See all (past) genres at once? Fade them? -->
+            
+            <div id="gameWikipedia" class="hidden">
+                <!-- Wikipedia Game -->
+                <!-- TODO: I guess a setup would be nice here. Number of categories, titles. -->
+                <button class="btnNav" data-destination="hubGames">Back</button><br>
+                <div id="gameWikipediaContent">
+                	<div id="gameWikipediaContentLeft"></div>
+                	<div id="gameWikipediaContentRight"></div>
+                </div>
+                <!--<button id="btnGameWikipediaRefresh">Refresh</button>-->
             </div>
-        </div>
-
-    <!-- Prompts -->
-        <div id="hubPrompts" class="hidden">
-            <!-- Prompt Hub, leads to the prompt divs -->
-            <h2>Prompts</h2>
-            <button class="btnNav" data-destination="hubMain">Back</button><br>
-        
-            <button id="btnPromptStoryStart" class="btnNav" data-destination="promptStory">Story (/r/WritingPrompts)</button><br>
-            <button id="btnPromptSimpleStart" class="btnNav" data-destination="promptSimple">Simple (/r/SimplePrompts)</button><br>
-            <button id="btnPromptEU" class="btnNav" data-destination="promptEU">Extended Universe (/r/WritingPrompts EU)</button>
-        </div>
-        
-        <div id="promptStory" class="hidden">
-            <!-- Story Prompt (/r/WritingPrompts)-->
-            <button class="btnNav" data-destination="hubPrompts">Back</button><br>
-            <div id="promptStoryContent"></div>
-            <button id="btnPromptStoryRefresh">Refresh</button>
-        </div>
-        
-        <div id="promptSimple" class="hidden">
-            <!-- Simple Prompt (/r/SimplePrompts)-->
-            <button class="btnNav" data-destination="hubPrompts">Back</button><br>
-            <div id="promptSimpleContent"></div>
-            <button id="btnPromptSimpleRefresh">Refresh</button>
-        </div>
-        
-        <div id="promptEU" class="hidden">
-            <!-- EU Prompt (/r/WritingPrompts EU)-->
-            <button class="btnNav" data-destination="hubPrompts">Back</button><br>
-            <div id="promptEUContent"></div>
-            <button id="btnPromptEURefresh">Refresh</button>
-        </div>
-        
-        <div id="promptCW" class="hidden">
-            <!-- CW Prompt (/r/WritingPrompts CW)-->
-            <button class="btnNav" data-destination="hubPrompts">Back</button><br>
-            <div id="promptCWContent"></div>
-            <button id="btnPromptCWRefresh">Refresh</button>
-        </div>
-
+            
+            <div id="gameGenres" class="hidden">
+                <!-- Genres Game -->
+                <button class="btnNav" data-destination="hubGames">Back</button><br>
+                <div id="gameGenresSetup" class="hidden">
+                    <!-- TODO: This will be for assigning the number of genres, as well as the interval/total time for the game.
+                    Default is 5 genres over 25 minutes  
+                    <select id="gameGenresSetupGenreCount">
+                        <option value="">
+                    </select>-->
+                </div>
+                <div id="gameGenresContent">
+                    <!-- NOTE: Not really sure how to structure this. A series of timers, visible one at a time? See all (past) genres at once? Fade them? -->
+                    <!-- Right now this is going to run from pre-existing divs. Let's uh, let's roll with this for now and fix it to be procedural (based on settings) later -->
+                    <div id="gameGenresContentTimer1" class="gameGenresTimer">
+                    	<button id="btnGameGenresBegin">Start</button>
+                    </div>
+                    <div id="gameGenresContentGenre1" class="gameGenresGenre"></div>
+                    <div id="gameGenresContentTimer2" class="gameGenresTimer"></div>
+                    <div id="gameGenresContentGenre2" class="gameGenresGenre"></div>
+                    <div id="gameGenresContentTimer3" class="gameGenresTimer"></div>
+                    <div id="gameGenresContentGenre3" class="gameGenresGenre"></div>
+                    <div id="gameGenresContentTimer4" class="gameGenresTimer"></div>
+                    <div id="gameGenresContentGenre4" class="gameGenresGenre"></div>
+                    <div id="gameGenresContentTimer5" class="gameGenresTimer"></div>
+                    <div id="gameGenresContentGenre5" class="gameGenresGenre"></div>
+                    <div id="gameGenresContentTimer6" class="gameGenresTimer"></div>
+                    <div id="gameGenresContentGenre6" class="gameGenresGenre">Pens down, time's up!</div>
+                </div>
+            </div>
+    
+        <!-- Prompts -->
+            <div id="hubPrompts" class="hidden">
+                <!-- Prompt Hub, leads to the prompt divs -->
+                <h2>Prompts</h2>
+                <button class="btnNav" data-destination="hubMain">Back</button><br>
+            
+                <button id="btnPromptStoryStart" class="btnNav" data-destination="promptStory">Story (/r/WritingPrompts)</button><br>
+                <button id="btnPromptSimpleStart" class="btnNav" data-destination="promptSimple">Simple (/r/SimplePrompts)</button><br>
+                <button id="btnPromptEUStart" class="btnNav" data-destination="promptEU">Extended Universe (/r/WritingPrompts EU)</button><br>
+                <button id="btnPromptCWStart" class="btnNav" data-destination="promptCW">Constrained Writing (/r/WritingPrompts CW)</button>
+            </div>
+            
+            <div id="promptStory" class="hidden">
+                <!-- Story Prompt (/r/WritingPrompts)-->
+                <button class="btnNav" data-destination="hubPrompts">Back</button><br>
+                <h2>Story Prompts</h2>
+                Taken from <a href="https://www.reddit.com/r/WritingPrompts/">reddit.com/r/WritingPrompts</a><br>
+                <div id="promptStoryContent"></div>
+                <button id="btnPromptStoryRefresh">Refresh</button>
+            </div>
+            
+            <div id="promptSimple" class="hidden">
+                <!-- Simple Prompt (/r/SimplePrompts)-->
+                <button class="btnNav" data-destination="hubPrompts">Back</button><br>
+                <h2>Simple Prompts</h2>
+                Taken from <a href="https://www.reddit.com/r/SimplePrompts/">reddit.com/r/SimplePrompts</a><br>
+                <div id="promptSimpleContent"></div>
+                <button id="btnPromptSimpleRefresh">Refresh</button>
+            </div>
+            
+            <div id="promptEU" class="hidden">
+                <!-- EU Prompt (/r/WritingPrompts EU)-->
+                <button class="btnNav" data-destination="hubPrompts">Back</button><br>
+                <h2>Extended Universe Prompts</h2>
+                Taken from <a href="https://www.reddit.com/r/WritingPrompts/">reddit.com/r/WritingPrompts</a> EU Tag<br>
+                <div id="promptEUContent"></div>
+                <button id="btnPromptEURefresh">Refresh</button>
+            </div>
+            
+            <div id="promptCW" class="hidden">
+                <!-- CW Prompt (/r/WritingPrompts CW)-->
+                <button class="btnNav" data-destination="hubPrompts">Back</button><br>
+                <h2>Constrained Writing Prompts</h2>
+                Taken from <a href="https://www.reddit.com/r/WritingPrompts/">reddit.com/r/WritingPrompts</a> CW Tag<br>
+                <div id="promptCWContent"></div>
+                <button id="btnPromptCWRefresh">Refresh</button>
+            </div>
+	</div>
 </body>
 <script>
+	console.log("First");
 	/*Initialise*/
 		var currentDiv = "hubMain"; //Starting Div
 		
@@ -108,6 +143,16 @@
 			currentDiv = newDiv;
 		}
 	
+		function msToTimer(ms) {
+			var seconds = Math.floor(ms / 1000);
+			var minutes = Math.floor(seconds / 60);
+			var seconds = seconds - (minutes * 60);
+			if(seconds < 10) {
+				seconds = "0" + seconds;
+			}
+			var format = minutes + ':' + seconds
+			return format;
+		}
 	
 	/* Menu Navigation*/
 		$('.btnNav').click(function() {
@@ -136,11 +181,14 @@
 				/* alert(result.query.random.length); 
 				Neither here nor there but... you can get the length, just like arrays.
 				Use for getting random from search result? Not really sure is /random will work there*/
+				$('#gameWikipediaContent').html('<div id="gameWikipediaContentLeft"></div><div id="gameWikipediaContentRight"></div>');
 				for(i=0;i<4;i++) {
 					var queryID = result.query.random[i].id,
 					queryTitle = result.query.random[i].title;
-					$('#gameWikipediaContent').append(wikipediaCategory[i].concat(": <a href='https://en.wikipedia.org/?curid=",queryID,"'>",queryTitle,"</a><br>"));
+					$('#gameWikipediaContentLeft').append(wikipediaCategory[i].concat(": <br>"));
+					$('#gameWikipediaContentRight').append("<a href='https://en.wikipedia.org/?curid=".concat(queryID,"'>",queryTitle,"</a><br>"));
 				}
+				$('#gameWikipediaContent').append('<button id="btnGameWikipediaRefresh">Refresh</button>');
 			});
 		}
 		
@@ -151,81 +199,169 @@
 			getWikipediaContent()
 		});
 	
+	/* Genre Game */
+		var	genreList = ['Action','Drama','Science Fiction (Sci-Fi)','Comedy','Party'],
+		timer = [],
+		genre = [],
+		curGenre;
+		function setupGenreGame(timerLength, numGenres) {
+			console.log("WHAT");
+			$('.gameGenresGenre').hide();
+			$('.gameGenresTimer').show();
+			
+			timer = [];
+			genre = [];
+			
+			timer[0] = 0;
+			genre[0] = genreList[(Math.floor(Math.random() * genreList.length))];
+			
+			for(i=1;i<numGenres;i++) {
+				timer[i] = timer[i-1] + timerLength;
+				randGenre = Math.floor(Math.random() * genreList.length);
+				while($.inArray(genreList[randGenre],genre) != -1) {
+					randGenre = Math.floor(Math.random() * genreList.length);
+				}
+				genre[i] = genreList[randGenre];
+			}
+			
+			timer[timer.length] = timer[timer.length-1] + timerLength;
+			
+			for(i=1;i<numGenres;i++) {
+				div = '#gameGenresContentTimer'.concat((i+1).toString());
+				$(div).text(msToTimer(timer[i]));
+				div = '#gameGenresContentGenre'.concat((i+1).toString());
+				$(div).text(genre[i]);
+			}
+			
+			div = '#gameGenresContentTimer'.concat((timer.length).toString());
+			console.log(div);
+			$(div).text(msToTimer(timer[i]));
+			
+		}
+		
+		function countdownGenreGame() {
+			/*
+			This is... This does not work. When I tested it off the bat, it revealed the first 3 genres,
+			alerted "Game over", logged "Start" 100 times, "End" 900 times, and then the console had
+			803 OTHER messages. I fucked up.
+			*/
+			console.log("Start");
+			for(i=curGenre;i<(genreList.length-1);i++) {
+				timer[i] -= 1000;
+				div = '#gameGenresContentTimer'.concat((i+1).toString());
+				$(div).text(msToTimer(timer[i]));				
+			}
+			if(timer[curGenre] == 0) {
+				div = '#gameGenresContentTimer'.concat((curGenre+1).toString());
+				$(div).hide();
+				div = '#gameGenresContentGenre'.concat((curGenre+1).toString());
+				$(div).show();
+				curGenre++;
+			}
+			if(curGenre<(genreList.length-1)) {
+				setTimeout(countdownGenreGame(),1000);
+			} else {
+				alert("Game over");
+			}
+			console.log("End");
+		}
+		
+		$('#btnGameGenresStart').click(function() {
+			setupGenreGame(300000, 5) //5 minutes in milliseconds = 300000
+		});
+		
+		$('#btnGameGenresBegin').click(function() {
+			$('#gameGenresContentTimer1').hide();
+			curGenre = 1;
+			countdownGenreGame();
+		});
+		
+		
 	/*Reddit Writing Prompts*/
-		function getRedditPost(url,targetDiv,refreshButton) {
+		function getRedditPost(url,targetDiv,refreshButton,multiple) {
+			/* NOTE: Longer term, it might be worth curating a specific list of good prompts from each subreddit.
+			Either just store the URLs and grab the JSON data from that, or store all the data. Honestly not sure 
+			if either is inherently better. */
 			var div = "#".concat(targetDiv),
-			ref = "#".concat(refreshButton);
+			ref = "#".concat(refreshButton),
+			multiple = multiple || false;
+			
 			$(div).text('Loading...');
 			$(ref).attr('disabled', true);
 			
 			$.getJSON(url, function(result) {
 				//NOTE: This currently has the reddit unlogged account refresh limit. Implement oAuth2 to fix.
+				/*TODO: Right now all the reddit prompts just get 100 posts (from either the front page or a flair search)
+				Change that to implement oAuth2, holla*/
 				console.log(result);
-				resultPrompt = result[0].data.children[0].data.title;
-				$(div).text(resultPrompt);
+				if(multiple) {
+					resultRandom = Math.floor(Math.random() * result.data.children.length);
+					resultPrompt = result.data.children[resultRandom].data.title;
+					resultLink = result.data.children[resultRandom].data.url;
+					resultUser = result.data.children[resultRandom].data.author;
+				} else {
+					resultPrompt = result[0].data.children[0].data.title;
+					resultLink = result[0].data.children[0].data.url;
+					resultUser = result[0].data.children[0].data.author;
+				}
+				resultPrompt = resultPrompt.replace(/(\[|\()(WP|EU|CW)(\]|\))( |)/g, "");
+				$(div).html('<h3>'.concat(resultPrompt,'</h3><br>Credit: /u/',resultUser,', <a href="',resultLink,'">Link</a>'));
 				$(ref).removeAttr('disabled');
 			});
 		}
 	
 	/* /r/WritingPrompts */
 		var writingPrompt,
-		writingPromptsURL = "http:/api.reddit.com/r/writingprompts/random.json";
+		writingPromptsURL = "https://api.reddit.com/r/WritingPrompts/search.json?q=flair%3A%28Writing+Prompt%29&restrict_sr=on&sort=hot&t=all&limit=100";
 			
 		$('#btnPromptStoryStart').click(function() {
 			//getStoryPrompt();
-			getRedditPost(writingPromptsURL, "promptStoryContent","btnPromptStoryRefresh");
+			getRedditPost(writingPromptsURL, "promptStoryContent","btnPromptStoryRefresh",true);
 		});
 		$('#btnPromptStoryRefresh').click(function() {
 			//getStoryPrompt();
-			getRedditPost(writingPromptsURL, "promptStoryContent","btnPromptStoryRefresh");
+			getRedditPost(writingPromptsURL, "promptStoryContent","btnPromptStoryRefresh",true);
 		});
 	
 	/* /r/SimplePrompts */
 		var simplePrompt,
-		simplePromptsURL = "http:/api.reddit.com/r/simpleprompts/random.json";
+		simplePromptsURL = "https://api.reddit.com/r/simpleprompts.json?limit=100";
 		
 		$('#btnPromptSimpleStart').click(function() {
 			//getStoryPrompt();
-			getRedditPost(simplePromptsURL, "promptSimpleContent","btnPromptSimpleRefresh");
+			getRedditPost(simplePromptsURL, "promptSimpleContent","btnPromptSimpleRefresh",true);
 		});
 		$('#btnPromptSimpleRefresh').click(function() {
 			//getStoryPrompt();
-			getRedditPost(simplePromptsURL, "promptSimpleContent","btnPromptSimpleRefresh");
+			getRedditPost(simplePromptsURL, "promptSimpleContent","btnPromptSimpleRefresh",true);
 		});
 	
 	/* /r/WritingPrompts EU */
-		/*NOTE: The URL for these search ones gets weird.
-		Regular URL: 	https://www.reddit.com/r/WritingPrompts/search?q=flair%3A%28Writing+Prompt%29&sort=relevance&restrict_sr=on&t=all
-		JSON URL:		https://www.reddit.com/r/WritingPrompts/search.json?q=flair%3A%28Writing+Prompt%29&sort=relevance&restrict_sr=on&t=all
-		Make sure you figure out the best search, generally. 
-		Put api. instead of www. I guess?*/
 		var EUPrompt,
-		EUPromptsURL = "http:/api.reddit.com/r/writingprompts/random.json";
+		EUPromptsURL = "https://api.reddit.com/r/WritingPrompts/search.json?q=flair%3A%28Established+Universe%29&restrict_sr=on&sort=hot&t=all&limit=100";
 		
 		$('#btnPromptEUStart').click(function() {
 			//getStoryPrompt();
-			getRedditPost(EUPromptsURL, "promptEUContent","btnPromptEURefresh");
+			getRedditPost(EUPromptsURL, "promptEUContent","btnPromptEURefresh",true);
 		});
 		$('#btnPromptEURefresh').click(function() {
 			//getStoryPrompt();
-			getRedditPost(EUPromptsURL, "promptEUContent","btnPromptEURefresh");
+			getRedditPost(EUPromptsURL, "promptEUContent","btnPromptEURefresh",true);
 		});
 	
 	/* /r/WritingPrompts CW */
 		var CWPrompt,
-		CWPromptsURL = "http:/api.reddit.com/r/writingprompts/random.json";
+		CWPromptsURL = "https://api.reddit.com/r/WritingPrompts/search.json?q=flair%3A%28Constrained+Writing%29&restrict_sr=on&sort=hot&t=all&limit=100";
 		
 		$('#btnPromptCWStart').click(function() {
 			//getStoryPrompt();
-			getRedditPost(CWPromptsURL, "promptCWContent","btnPromptCWRefresh");
+			getRedditPost(CWPromptsURL, "promptCWContent","btnPromptCWRefresh",true);
 		});
 		$('#btnPromptCWRefresh').click(function() {
 			//getStoryPrompt();
-			getRedditPost(CWPromptsURL, "promptCWContent","btnPromptCWRefresh");
+			getRedditPost(CWPromptsURL, "promptCWContent","btnPromptCWRefresh",true);
 		});
 		
-		
-	/* Genre Game */
-		var	genreList = ['Action','Drama','Science Fiction (Sci-Fi)'];
+	/* Would a showerthoughts entry be worth it? */
 </script>
 </html>
